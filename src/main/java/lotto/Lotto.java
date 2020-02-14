@@ -1,6 +1,9 @@
 package lotto;
 
+import lotto.dto.MatchResult;
+import lotto.dto.PurchaseInfo;
 import lotto.ticket.LottoTickets;
+import lotto.ticket.WinningLottoTicket;
 
 import static lotto.util.LottoStatics.PRICE_OF_LOTTO_TICKET;
 
@@ -23,7 +26,12 @@ public class Lotto {
         return new Lotto(payment);
     }
 
-    public int ticketCount() {
-        return lottoTickets.ticketCount();
+    public PurchaseInfo purchaseInfo() {
+        return new PurchaseInfo(lottoTickets);
+    }
+
+    public MatchResult winningCheck(WinningLottoTicket winningLottoTicket) {
+
+        return new MatchResult(payment, lottoTickets.winningCheck(winningLottoTicket));
     }
 }

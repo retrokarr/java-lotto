@@ -15,7 +15,7 @@ class LottoTest {
         Lotto lotto = Lotto.buy(payment);
 
         assertThat(lotto).isNotNull();
-        assertThat(lotto.ticketCount()).isEqualTo(payment / PRICE_OF_LOTTO_TICKET);
+        assertThat(lotto.purchaseInfo().purchaseCount()).isEqualTo(payment / PRICE_OF_LOTTO_TICKET);
     }
 
     @ParameterizedTest
