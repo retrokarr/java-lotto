@@ -26,6 +26,4 @@ public class Lotto {
     public int ticketCount() {
         return lottoTickets.ticketCount();
     }
-
-
 }
