@@ -23,10 +23,14 @@ public class LottoTickets {
     }
 
     public static LottoTickets buy(int affordableCount, NumberGenerator numberGenerator) {
-        List<LottoTicket> lottoTickets = IntStream.rangeClosed(0, affordableCount)
+        List<LottoTicket> lottoTickets = IntStream.range(0, affordableCount)
                 .mapToObj(x -> new LottoTicket(numberGenerator.generate()))
                 .collect(Collectors.toList());
 
         return new LottoTickets(lottoTickets);
+    }
+
+    public int ticketCount() {
+        return lottoTickets.size();
     }
 }

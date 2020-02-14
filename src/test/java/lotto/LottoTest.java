@@ -4,15 +4,18 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static lotto.util.LottoStatics.PRICE_OF_LOTTO_TICKET;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @Test
     void buyLottoTest() {
-        Lotto lotto = Lotto.buy(10000);
+        int payment = 10000;
+        Lotto lotto = Lotto.buy(payment);
 
         assertThat(lotto).isNotNull();
+        assertThat(lotto.ticketCount()).isEqualTo(payment / PRICE_OF_LOTTO_TICKET);
     }
 
     @ParameterizedTest

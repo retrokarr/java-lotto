@@ -22,4 +22,8 @@ public class Lotto {
     public static Lotto buy(int payment) {
         return new Lotto(payment);
     }
+
+    public int ticketCount() {
+        return lottoTickets.ticketCount();
+    }
 }
