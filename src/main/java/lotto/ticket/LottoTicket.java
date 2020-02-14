@@ -1,12 +1,14 @@
 package lotto.ticket;
 
+import lotto.prize.LottoPrize;
+
 import java.util.Collections;
 import java.util.List;
 
 import static lotto.util.LottoStatics.NUMBER_OF_LOTTO_NUMBER;
 
 public class LottoTicket {
-    private List<Integer> numbers;
+    List<Integer> numbers;
 
     public LottoTicket(List<Integer> numbers) {
         if(numbers == null || numbers.size() != NUMBER_OF_LOTTO_NUMBER) {
@@ -15,5 +17,14 @@ public class LottoTicket {
 
         Collections.sort(numbers);
         this.numbers = numbers;
+    }
+
+    public LottoPrize winningCheck(WinningLottoTicket winningLottoTicket) {
+        int matchCount = (int) winningLottoTicket.getLottoNumbers()
+                .stream()
+                .filter(numbers::contains)
+                .count();
+
+        return LottoPrize.ofMatchCount(matchCount);
     }
 }
