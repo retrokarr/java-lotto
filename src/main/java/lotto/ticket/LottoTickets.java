@@ -2,6 +2,7 @@ package lotto.ticket;
 
 import lotto.number.NumberGenerator;
 import lotto.number.RandomNumberGenerator;
+import lotto.prize.LottoPrizes;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,5 +33,15 @@ public class LottoTickets {
 
     public int ticketCount() {
         return lottoTickets.size();
+    }
+
+    public LottoPrizes winningCheck(WinningLottoTicket winningLottoTicket) {
+        LottoPrizes lottoPrizes = new LottoPrizes();
+
+        lottoTickets.stream()
+                .map(lottoTicket -> lottoTicket.winningCheck(winningLottoTicket))
+                .forEach(lottoPrizes::addPrize);
+
+        return lottoPrizes;
     }
 }
