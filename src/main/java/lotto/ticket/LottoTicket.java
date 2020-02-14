@@ -2,6 +2,7 @@ package lotto.ticket;
 
 import lotto.prize.LottoPrize;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,5 +27,9 @@ public class LottoTicket {
                 .count();
 
         return LottoPrize.ofMatchCount(matchCount);
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 }

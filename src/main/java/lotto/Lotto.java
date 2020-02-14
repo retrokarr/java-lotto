@@ -27,7 +27,7 @@ public class Lotto {
     }
 
     public PurchaseInfo purchaseInfo() {
-        return new PurchaseInfo(lottoTickets);
+        return new PurchaseInfo(lottoTickets.getTickets());
     }
 
     public MatchResult winningCheck(WinningLottoTicket winningLottoTicket) {

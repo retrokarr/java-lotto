@@ -1,15 +1,21 @@
 package lotto.dto;
 
-import lotto.ticket.LottoTickets;
+import lotto.ticket.LottoTicket;
+
+import java.util.List;
 
 public class PurchaseInfo {
-    private LottoTickets lottoTickets;
+    private List<LottoTicket> lottoTickets;
 
-    public PurchaseInfo(LottoTickets lottoTickets) {
+    public PurchaseInfo(List<LottoTicket> lottoTickets) {
         this.lottoTickets = lottoTickets;
     }
 
     public int purchaseCount() {
-        return lottoTickets.ticketCount();
+        return lottoTickets.size();
+    }
+
+    public List<LottoTicket> getTickets() {
+        return lottoTickets;
     }
 }
