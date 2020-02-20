@@ -1,5 +1,6 @@
 package lotto;
 
+import com.sun.javafx.binding.StringFormatter;
 import lotto.dto.MatchResult;
 import lotto.dto.PurchaseInfo;
 import lotto.prize.LottoPrize;
@@ -7,10 +8,7 @@ import lotto.prize.LottoPrizes;
 import lotto.ticket.LottoTicket;
 import lotto.ticket.WinningLottoTicket;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ConsoleLotto {
@@ -35,17 +33,17 @@ public class ConsoleLotto {
 
     private static void showResult(MatchResult matchResult) {
         LottoPrizes prizes = matchResult.getPrizes();
-        List<LottoPrize> lottoPrizes = Arrays.asList(LottoPrize.values());
+        List<LottoPrize> lottoPrizes = new ArrayList<>(Arrays.asList(LottoPrize.values()));//https://kkwonsy.tistory.com/14
         Collections.reverse(lottoPrizes);
         lottoPrizes.remove(0);
 
         int revenue = 0;
         for(LottoPrize lottoPrize : lottoPrizes) {
-            System.out.println(lottoPrize.getMatchCount() + "개 일치 (" + lottoPrize.getPrizeMoney() + "원)- " + prizes.countOfPrize(lottoPrize) + "개");
+            System.out.printf("%d개 일치(%d원)- %d개\n", lottoPrize.getMatchCount(), lottoPrize.getPrizeMoney(), prizes.countOfPrize(lottoPrize));
             revenue += lottoPrize.getPrizeMoney() * prizes.countOfPrize(lottoPrize);
         }
 
-        System.out.println("총 수익률은 " + revenue / matchResult.getPayment() + "%입니다.");
+        System.out.printf("총 수익률은 %d%%입니다.\n", revenue / matchResult.getPayment());
     }
 
     private static void showEnterPaymentStatement() {
