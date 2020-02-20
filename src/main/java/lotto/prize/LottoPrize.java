@@ -12,9 +12,9 @@ public enum LottoPrize {
     private int prizeMoney;
     private int matchCount;
 
-    LottoPrize(int prizeMoney, int matchCount) {
-        this.prizeMoney = prizeMoney;
+    LottoPrize(int matchCount, int prizeMoney) {
         this.matchCount = matchCount;
+        this.prizeMoney = prizeMoney;
     }
 
     public static LottoPrize ofMatchCount(int matchCount) {
