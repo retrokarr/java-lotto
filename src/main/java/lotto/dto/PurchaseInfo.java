@@ -2,6 +2,7 @@ package lotto.dto;
 
 import lotto.ticket.LottoTicket;
 
+import java.util.Collections;
 import java.util.List;
 
 public class PurchaseInfo {
@@ -16,6 +17,6 @@ public class PurchaseInfo {
     }
 
     public List<LottoTicket> getTickets() {
-        return lottoTickets;
+        return Collections.unmodifiableList(lottoTickets);
     }
 }
