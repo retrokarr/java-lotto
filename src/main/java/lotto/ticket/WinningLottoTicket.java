@@ -1,6 +1,6 @@
 package lotto.ticket;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WinningLottoTicket extends LottoTicket {
@@ -9,6 +9,6 @@ public class WinningLottoTicket extends LottoTicket {
     }
 
     public List<Integer> getLottoNumbers() {
-        return new ArrayList<>(numbers);
+        return Collections.unmodifiableList(getNumbers());
     }
 }
