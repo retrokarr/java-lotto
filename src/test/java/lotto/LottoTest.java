@@ -23,9 +23,4 @@ class LottoTest {
     void invalidInputTest(int payment) {
         assertThatThrownBy(() -> Lotto.buy(payment)).isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void winningCheckTest() {
-
-    }
 }
