@@ -12,9 +12,7 @@ public class LottoTicket {
     List<Integer> numbers;
 
     public LottoTicket(List<Integer> numbers) {
-        if(numbers == null || numbers.size() != NUMBER_OF_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("Invalid input : numbers is null or size is not " + NUMBER_OF_LOTTO_NUMBER);
-        }
+        inputCheck(numbers);
 
         Collections.sort(numbers);
         this.numbers = numbers;
@@ -31,5 +29,11 @@ public class LottoTicket {
 
     public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
+    }
+
+    private void inputCheck(List<Integer> numbers) {
+        if(numbers == null || numbers.size() != NUMBER_OF_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("Invalid input : numbers is null or size is not " + NUMBER_OF_LOTTO_NUMBER);
+        }
     }
 }
