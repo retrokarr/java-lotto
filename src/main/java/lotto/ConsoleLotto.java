@@ -25,8 +25,10 @@ public class ConsoleLotto {
 
         showEnterWinningNumberStatement();
         String winningNumberString = scanner.nextLine();
+        showEnterBonusNumberStatement();
+        int bonusNumber = scanner.nextInt();
 
-        MatchResult matchResult = lotto.winningCheck(new WinningLottoTicket(convertToNumber(winningNumberString), 0));
+        MatchResult matchResult = lotto.winningCheck(new WinningLottoTicket(convertToNumber(winningNumberString), bonusNumber));
         showResult(matchResult);
     }
 
@@ -38,7 +40,13 @@ public class ConsoleLotto {
 
         int revenue = 0;
         for(LottoPrize lottoPrize : lottoPrizes) {
-            System.out.printf("%d개 일치(%d원)- %d개\n", lottoPrize.getMatchCount(), lottoPrize.getPrizeMoney(), prizes.countOfPrize(lottoPrize));
+            System.out.printf(
+                    "%d개 %s일치(%d원)- %d개\n",
+                    lottoPrize.getMatchCount(),
+                    lottoPrize.isBonusMatching() ? ", 보너스 볼 일치" : "",
+                    lottoPrize.getPrizeMoney(),
+                    prizes.countOfPrize(lottoPrize)
+            );
             revenue += lottoPrize.getPrizeMoney() * prizes.countOfPrize(lottoPrize);
         }
 
@@ -51,6 +59,10 @@ public class ConsoleLotto {
 
     private static void showEnterWinningNumberStatement() {
         System.out.println("지난 주 당첨 번호를 임력해 주세요.");
+    }
+
+    private static void showEnterBonusNumberStatement() {
+        System.out.println("보너스 볼을 입력해 주세요.");
     }
 
     private static void showPurchaseInfo(PurchaseInfo purchaseInfo) {
