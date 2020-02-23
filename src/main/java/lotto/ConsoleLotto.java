@@ -43,7 +43,7 @@ public class ConsoleLotto {
             System.out.printf(
                     "%d개 %s일치(%d원)- %d개\n",
                     lottoPrize.getMatchCount(),
-                    lottoPrize.isBonusMatching() ? ", 보너스 볼 일치" : "",
+                    lottoPrize.isBonusMatching() ? ", 보너스 볼 " : "",
                     lottoPrize.getPrizeMoney(),
                     prizes.countOfPrize(lottoPrize)
             );
