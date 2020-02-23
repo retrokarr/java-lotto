@@ -2,9 +2,7 @@ package lotto.ticket;
 
 import lotto.prize.LottoPrize;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static lotto.util.LottoStatics.NUMBER_OF_LOTTO_NUMBER;
 
@@ -32,8 +30,14 @@ public class LottoTicket {
     }
 
     private void inputCheck(List<Integer> numbers) {
-        if(numbers == null || numbers.size() != NUMBER_OF_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("Invalid input : numbers is null or size is not " + NUMBER_OF_LOTTO_NUMBER);
+        if(numbers == null) {
+            throw new IllegalArgumentException("Invalid input : numbers is null");
+        }
+
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        if(numberSet.size() != NUMBER_OF_LOTTO_NUMBER) {
+            throw new IllegalArgumentException("Invalid input : number is duplicated");
         }
     }
 }

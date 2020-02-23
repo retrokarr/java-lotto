@@ -1,6 +1,5 @@
 package lotto;
 
-import com.sun.javafx.binding.StringFormatter;
 import lotto.dto.MatchResult;
 import lotto.dto.PurchaseInfo;
 import lotto.prize.LottoPrize;
@@ -27,7 +26,7 @@ public class ConsoleLotto {
         showEnterWinningNumberStatement();
         String winningNumberString = scanner.nextLine();
 
-        MatchResult matchResult = lotto.winningCheck(new WinningLottoTicket(convertToNumber(winningNumberString)));
+        MatchResult matchResult = lotto.winningCheck(new WinningLottoTicket(convertToNumber(winningNumberString), 0));
         showResult(matchResult);
     }
 

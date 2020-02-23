@@ -47,7 +47,7 @@ class LottoTicketsTest {
                 new LottoTicket(Arrays.asList(1, 2, 7, 8, 9, 10))
         ));
 
-        LottoPrizes lottoPrizes = lottoTickets.winningCheck(new WinningLottoTicket(numbers));
+        LottoPrizes lottoPrizes = lottoTickets.winningCheck(new WinningLottoTicket(numbers, 0));
 
         assertThat(lottoPrizes.countOfPrize(NONE)).isEqualTo(countOfNone);
         assertThat(lottoPrizes.countOfPrize(FOURTH_PRIZE)).isEqualTo(countOfFourth);

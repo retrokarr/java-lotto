@@ -39,7 +39,7 @@ class LottoTicketTest {
     @ParameterizedTest
     @MethodSource
     void winningCheckTest(List<Integer> numbers, LottoPrize lottoPrize) {
-        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
         assertThat(new LottoTicket(numbers).winningCheck(winningLottoTicket)).isEqualTo(lottoPrize);
     }
 
