@@ -22,7 +22,7 @@ public class LottoTicket {
                 .filter(numbers::contains)
                 .count();
 
-        return LottoPrize.ofMatchCount(matchCount);
+        return LottoPrize.ofMatchCount(matchCount, numbers.contains(winningLottoTicket.getBonusNumber()));
     }
 
     public List<Integer> getNumbers() {
