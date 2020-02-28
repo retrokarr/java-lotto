@@ -34,9 +34,7 @@ public class LottoTicket {
             throw new IllegalArgumentException("Invalid input : numbers is null");
         }
 
-        Set<Integer> numberSet = new HashSet<>(numbers);
-
-        if(numberSet.size() != NUMBER_OF_LOTTO_NUMBER) {
+        if(new HashSet<>(numbers).size() != NUMBER_OF_LOTTO_NUMBER) {
             throw new IllegalArgumentException("Invalid input : number is duplicated");
         }
     }
