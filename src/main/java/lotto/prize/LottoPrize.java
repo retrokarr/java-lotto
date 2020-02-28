@@ -16,7 +16,7 @@ public enum LottoPrize {
 
     private static final Map<Integer, LottoPrize> prizes = Collections.unmodifiableMap(
             Stream.of(values())
-                    .collect(Collectors.toMap(LottoPrize::getMatchCount, Function.identity(), (higher, lower) -> lower))
+                    .collect(Collectors.toMap(LottoPrize::getMatchCount, Function.identity(), (pre, post) -> post))
     );
 
     private int prizeMoney;
