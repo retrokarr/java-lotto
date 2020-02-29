@@ -38,20 +38,21 @@ class LottoTicketTest {
 
     @ParameterizedTest
     @MethodSource
-    void winningCheckTest(List<Integer> numbers, LottoPrize lottoPrize) {
-        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6));
+    void winningCheckTest(List<Integer> numbers, int bonusNumber, LottoPrize lottoPrize) {
+        WinningLottoTicket winningLottoTicket = new WinningLottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6), bonusNumber);
         assertThat(new LottoTicket(numbers).winningCheck(winningLottoTicket)).isEqualTo(lottoPrize);
     }
 
     private static Stream winningCheckTest() {
         return Stream.of(
-                Arguments.of(Arrays.asList(8, 9, 10, 11, 12, 13), NONE),
-                Arguments.of(Arrays.asList(1, 9, 10, 11, 12, 13), NONE),
-                Arguments.of(Arrays.asList(1, 2, 10, 11, 12, 13), NONE),
-                Arguments.of(Arrays.asList(1, 2, 3, 11, 12, 13), FOURTH_PRIZE),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 12, 13), THIRD_PRIZE),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 13), SECOND_PRIZE),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), FIRST_PRIZE)
+                Arguments.of(Arrays.asList(8, 9, 10, 11, 12, 13), 7,  NONE),
+                Arguments.of(Arrays.asList(1, 9, 10, 11, 12, 13), 7, NONE),
+                Arguments.of(Arrays.asList(1, 2, 10, 11, 12, 13), 7, NONE),
+                Arguments.of(Arrays.asList(1, 2, 3, 11, 12, 13), 7, FIFTH_PRIZE),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 12, 13), 7, FOURTH_PRIZE),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 13), 7, THIRD_PRIZE),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 13), 13, SECOND_PRIZE),
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, FIRST_PRIZE)
         );
     }
 
