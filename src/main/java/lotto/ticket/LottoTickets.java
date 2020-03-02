@@ -31,10 +31,6 @@ public class LottoTickets {
         return new LottoTickets(lottoTickets);
     }
 
-    public int ticketCount() {
-        return lottoTickets.size();
-    }
-
     public LottoPrizes winningCheck(WinningLottoTicket winningLottoTicket) {
         LottoPrizes lottoPrizes = new LottoPrizes();
 
