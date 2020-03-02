@@ -4,6 +4,7 @@ import lotto.number.NumberGenerator;
 import lotto.number.RandomNumberGenerator;
 import lotto.prize.LottoPrizes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -43,5 +44,12 @@ public class LottoTickets {
 
     public List<LottoTicket> getTickets() {
         return lottoTickets;
+    }
+
+    public LottoTickets addTickets(LottoTickets automaticTickets) {
+        List<LottoTicket> newTickets = new ArrayList<>(this.lottoTickets);
+        newTickets.addAll(automaticTickets.lottoTickets);
+
+        return new LottoTickets(newTickets);
     }
 }

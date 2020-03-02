@@ -1,18 +1,19 @@
 package lotto.dto;
 
 import lotto.prize.LottoPrizes;
+import lotto.ticket.TicketPayment;
 
 public class MatchResult {
-    private int payment;
+    private TicketPayment ticketPayment;
     private LottoPrizes lottoPrizes;
 
-    public MatchResult(int payment, LottoPrizes lottoPrizes) {
-        this.payment = payment;
+    public MatchResult(TicketPayment ticketPayment, LottoPrizes lottoPrizes) {
+        this.ticketPayment = ticketPayment;
         this.lottoPrizes = lottoPrizes;
     }
 
     public int getPayment() {
-        return payment;
+        return ticketPayment.getPayment();
     }
 
     public LottoPrizes getPrizes() {

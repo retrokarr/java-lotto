@@ -6,18 +6,30 @@ public class TicketPayment {
     private int payment;
     private LottoTickets manualTickets;
 
-    // 중복이 있더라도 미리 체크하는게 맞지 않을까?
-    public static void ticketCheck(int payment, int numberOfManualTicket) {
-        checkPayment(payment);
-        checkNumberOfManualTickets(payment, numberOfManualTicket);
-    }
-
     public TicketPayment(int payment, LottoTickets manualTickets) {
         checkPayment(payment);
         checkManualTickets(payment, manualTickets);
 
         this.payment = payment;
         this.manualTickets = manualTickets;
+    }
+
+    public LottoTickets addLottoTickets(LottoTickets automaticTickets) {
+        return manualTickets.addTickets(automaticTickets);
+    }
+
+    public int affordableTicketCount() {
+        return payment / PRICE_OF_LOTTO_TICKET - manualTickets.getTickets().size();
+    }
+
+    public int getPayment() {
+        return payment;
+    }
+
+    // 중복이 있더라도 미리 체크하는게 맞지 않을까?
+    public static void ticketCheck(int payment, int numberOfManualTicket) {
+        checkPayment(payment);
+        checkNumberOfManualTickets(payment, numberOfManualTicket);
     }
 
     private static void checkPayment(int payment) {
