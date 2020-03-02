@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
-    List<LottoTicket> lottoTickets;
+    private List<LottoTicket> lottoTickets;
 
     public LottoTickets(List<LottoTicket> lottoTickets) {
         if(lottoTickets == null || lottoTickets.isEmpty()) {
@@ -23,7 +23,7 @@ public class LottoTickets {
         return buy(affordableCount, new RandomNumberGenerator());
     }
 
-    public static LottoTickets buy(int affordableCount, NumberGenerator numberGenerator) {
+    private static LottoTickets buy(int affordableCount, NumberGenerator numberGenerator) {
         List<LottoTicket> lottoTickets = IntStream.range(0, affordableCount)
                 .mapToObj(x -> new LottoTicket(numberGenerator.generate()))
                 .collect(Collectors.toList());
