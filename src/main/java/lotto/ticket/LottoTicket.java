@@ -7,7 +7,7 @@ import java.util.*;
 import static lotto.util.LottoStatics.NUMBER_OF_LOTTO_NUMBER;
 
 public class LottoTicket {
-    List<Integer> numbers;
+    private List<Integer> numbers;
 
     public LottoTicket(List<Integer> numbers) {
         inputCheck(numbers);

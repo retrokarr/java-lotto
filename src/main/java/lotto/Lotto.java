@@ -31,7 +31,6 @@ public class Lotto {
     }
 
     public MatchResult winningCheck(WinningLottoTicket winningLottoTicket) {
-
         return new MatchResult(payment, lottoTickets.winningCheck(winningLottoTicket));
     }
 }
