@@ -1,5 +1,6 @@
 package lotto.number;
 
+import lotto.Lottos;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,15 +34,22 @@ class LottoNumberTest {
     @Test
     void comparableTest() {
         List<LottoNumber> lottoNumbers = new ArrayList<>();
-        lottoNumbers.add(new LottoNumber(10));
         lottoNumbers.add(new LottoNumber(20));
-
-        assertThat(lottoNumbers.get(0)).isEqualTo(new LottoNumber(10));
-        assertThat(lottoNumbers.get(1)).isEqualTo(new LottoNumber(20));
-
-        Collections.sort(lottoNumbers);
+        lottoNumbers.add(new LottoNumber(10));
 
         assertThat(lottoNumbers.get(0)).isEqualTo(new LottoNumber(20));
         assertThat(lottoNumbers.get(1)).isEqualTo(new LottoNumber(10));
+
+        Collections.sort(lottoNumbers);
+
+        assertThat(lottoNumbers.get(0)).isEqualTo(new LottoNumber(10));
+        assertThat(lottoNumbers.get(1)).isEqualTo(new LottoNumber(20));
+    }
+
+    @Test
+    void toStringTest() {
+        List<LottoNumber> lottoNumbers = new ArrayList<>(Lottos.asList(1, 2, 3, 4, 5, 6));
+
+        assertThat(lottoNumbers.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

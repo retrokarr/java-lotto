@@ -13,6 +13,7 @@ public class Lotto {
     private Lotto(TicketPayment ticketPayment) {
         checkInput(ticketPayment);
 
+        this.ticketPayment = ticketPayment;
         this.lottoTickets = ticketPayment.addLottoTickets(
                 LottoTickets.buy(ticketPayment.affordableTicketCount())
         );
@@ -23,7 +24,7 @@ public class Lotto {
     }
 
     public PurchaseInfo purchaseInfo() {
-        return new PurchaseInfo(lottoTickets.getTickets());
+        return new PurchaseInfo(ticketPayment, lottoTickets.getTickets());
     }
 
     public MatchResult winningCheck(WinningLottoTicket winningLottoTicket) {

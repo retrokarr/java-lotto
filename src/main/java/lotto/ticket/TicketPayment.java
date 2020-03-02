@@ -18,8 +18,12 @@ public class TicketPayment {
         return manualTickets.addTickets(automaticTickets);
     }
 
+    public int manualTicketCount() {
+        return manualTickets.getTickets().size();
+    }
+
     public int affordableTicketCount() {
-        return payment / PRICE_OF_LOTTO_TICKET - manualTickets.getTickets().size();
+        return payment / PRICE_OF_LOTTO_TICKET - manualTicketCount();
     }
 
     public int getPayment() {
