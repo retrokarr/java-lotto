@@ -1,15 +1,14 @@
 package lotto.ticket;
 
+import lotto.number.LottoNumber;
+
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.util.LottoStatics.LIMIT_OF_LOTTO_NUMBER;
-import static lotto.util.LottoStatics.START_OF_LOTTO_NUMBER;
-
 public class WinningLottoTicket extends LottoTicket {
-    private int bonusNumber;
+    private LottoNumber bonusNumber;
 
-    public WinningLottoTicket(List<Integer> numbers, int bonusNumber) {
+    public WinningLottoTicket(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         super(numbers);
 
         validate(numbers, bonusNumber);
@@ -17,29 +16,21 @@ public class WinningLottoTicket extends LottoTicket {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> getLottoNumbers() {
+    public List<LottoNumber> getLottoNumbers() {
         return Collections.unmodifiableList(getNumbers());
     }
 
-    public int getBonusNumber() {
+    public LottoNumber getBonusNumber() {
         return bonusNumber;
     }
 
-    private void validate(List<Integer> numbers, int bonusNumber) {
-        rangeCheckOfBonusNumber(bonusNumber);
-
+    private void validate(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         duplicationCheckOfBonusNumber(numbers, bonusNumber);
     }
 
-    private void duplicationCheckOfBonusNumber(List<Integer> numbers, int bonusNumber) {
+    private void duplicationCheckOfBonusNumber(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException("Duplicated number");
-        }
-    }
-
-    private void rangeCheckOfBonusNumber(int bonusNumber) {
-        if(bonusNumber < START_OF_LOTTO_NUMBER || bonusNumber > LIMIT_OF_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("Wrong input of bonus number : [" + bonusNumber + "]");
         }
     }
 }

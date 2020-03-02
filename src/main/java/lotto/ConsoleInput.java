@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.number.LottoNumber;
 import lotto.ticket.WinningLottoTicket;
 
 import java.util.Arrays;
@@ -27,13 +28,14 @@ public class ConsoleInput {
         System.out.println("보너스 볼을 입력해 주세요.");
         int bonusNumber = SCANNER.nextInt();
 
-        return new WinningLottoTicket(convertToNumber(winningNumberString), bonusNumber);
+        return new WinningLottoTicket(convertToNumber(winningNumberString), new LottoNumber(bonusNumber));
     }
 
-    private static List<Integer> convertToNumber(String winningNumberString) {
+    private static List<LottoNumber> convertToNumber(String winningNumberString) {
         return Arrays.stream(winningNumberString.split(SPLIT))
                 .map(String::trim)
                 .map(Integer::parseInt)
+                .map(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 }

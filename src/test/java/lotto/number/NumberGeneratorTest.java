@@ -10,7 +10,21 @@ class NumberGeneratorTest {
 
     @Test
     void numberGeneratorTest() {
-        assertThat(((NumberGenerator) () -> Arrays.asList(1, 2, 3, 4, 5, 6)).generate())
-                .contains(1, 2, 3, 4, 5, 6);
+        assertThat(((NumberGenerator) () -> Arrays.asList(
+                new LottoNumber(1),
+                new LottoNumber(2),
+                new LottoNumber(3),
+                new LottoNumber(4),
+                new LottoNumber(5),
+                new LottoNumber(6)
+        )).generate())
+                .contains(
+                        new LottoNumber(1),
+                        new LottoNumber(2),
+                        new LottoNumber(3),
+                        new LottoNumber(4),
+                        new LottoNumber(5),
+                        new LottoNumber(6)
+                );
     }
 }

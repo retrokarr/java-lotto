@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.number.LottoNumber;
 import lotto.ticket.LottoTicket;
 import lotto.ticket.LottoTickets;
 import lotto.ticket.TicketPayment;
@@ -19,7 +20,7 @@ class LottoTest {
     @Test
     void buyLottoTest() {
         int payment = 10000;
-        TicketPayment ticketPayment = new TicketPayment(payment, new LottoTickets(Arrays.asList(new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)))));
+        TicketPayment ticketPayment = new TicketPayment(payment, new LottoTickets(Arrays.asList(new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))))));
 
         Lotto lotto = Lotto.buy(ticketPayment);
 

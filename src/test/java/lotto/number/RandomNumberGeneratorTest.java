@@ -11,7 +11,7 @@ class RandomNumberGeneratorTest {
 
     @Test
     void randomNumberGeneratorTest() {
-        List<Integer> numbers = new RandomNumberGenerator().generate();
+        List<LottoNumber> numbers = new RandomNumberGenerator().generate();
 
         assertThat(numbers).isNotNull();
         assertThat(numbers.size()).isEqualTo(LottoStatics.NUMBER_OF_LOTTO_NUMBER);
