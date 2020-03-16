@@ -1,5 +1,6 @@
 package lotto.ticket;
 
+import lotto.Lottos;
 import lotto.number.LottoNumber;
 import lotto.prize.LottoPrizes;
 import org.junit.jupiter.api.Test;
@@ -21,12 +22,12 @@ class LottoTicketsTest {
     @Test
     void lottoTicketsTest() {
         assertThat(new LottoTickets(Arrays.asList(
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6)))
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6))
         ))).isNotNull();
     }
 
@@ -41,11 +42,11 @@ class LottoTicketsTest {
     @MethodSource
     void winningCheckTest(List<LottoNumber> numbers, int bonusNumber, int countOfNone, int countOfFifth, int countOfFourth, int countOfThird, int countOfSecond, int countOfFirst) {
         LottoTickets lottoTickets = new LottoTickets(Arrays.asList(
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(7))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(8))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(8), new LottoNumber(9))),
-                new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(8), new LottoNumber(9), new LottoNumber(10)))
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 7)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 8)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 8, 9)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 8, 9, 10))
         ));
 
         LottoPrizes lottoPrizes = lottoTickets.winningCheck(new WinningLottoTicket(numbers, new LottoNumber(bonusNumber)));
@@ -60,9 +61,9 @@ class LottoTicketsTest {
 
     private static Stream winningCheckTest() {
         return Stream.of(
-                Arguments.of(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6)), 7, 0, 1, 1, 1, 1, 1),
-                Arguments.of(Arrays.asList(new LottoNumber(45), new LottoNumber(44), new LottoNumber(43), new LottoNumber(42), new LottoNumber(41), new LottoNumber(40)), 7, 5, 0, 0, 0, 0, 0),
-                Arguments.of(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(45), new LottoNumber(44), new LottoNumber(43)), 7, 0, 5, 0, 0, 0, 0)
+                Arguments.of(Lottos.asList(1, 2, 3, 4, 5, 6), 7, 0, 1, 1, 1, 1, 1),
+                Arguments.of(Lottos.asList(45, 44, 43, 42, 41, 40), 7, 5, 0, 0, 0, 0, 0),
+                Arguments.of(Lottos.asList(1, 2, 3, 45, 44, 43), 7, 0, 5, 0, 0, 0, 0)
         );
     }
 }

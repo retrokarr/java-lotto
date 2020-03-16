@@ -1,12 +1,13 @@
 package lotto.ticket;
 
-import lotto.number.LottoNumber;
+import lotto.Lottos;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,8 +36,8 @@ class TicketPaymentTest {
 
     private static Stream ticketPaymentConstructorTest() {
         return Stream.of(
-                Arguments.of(1000, new LottoTickets(Arrays.asList())),
-                Arguments.of(1000, new LottoTickets(Arrays.asList(new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))))))
+                Arguments.of(1000, new LottoTickets(Collections.emptyList())),
+                Arguments.of(1000, new LottoTickets(Arrays.asList(new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)))))
         );
     }
 
@@ -50,7 +51,7 @@ class TicketPaymentTest {
     private static Stream invalidTicketPaymentConstructorTest() {
         return Stream.of(
                 Arguments.of(1, null),
-                Arguments.of(-1, new LottoTickets(Arrays.asList(new LottoTicket(Arrays.asList(new LottoNumber(1), new LottoNumber(2), new LottoNumber(3), new LottoNumber(4), new LottoNumber(5), new LottoNumber(6))))))
+                Arguments.of(-1, new LottoTickets(Arrays.asList(new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)))))
         );
     }
 }
