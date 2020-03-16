@@ -29,7 +29,7 @@ public class TicketPayment {
     }
 
     public int affordableTicketCount() {
-        return payment / PRICE_OF_LOTTO_TICKET - manualTicketCount();
+        return (payment / PRICE_OF_LOTTO_TICKET) - manualTicketCount();
     }
 
     public int getPayment() {
