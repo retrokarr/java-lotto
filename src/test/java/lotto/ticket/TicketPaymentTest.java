@@ -37,7 +37,7 @@ class TicketPaymentTest {
     private static Stream ticketPaymentConstructorTest() {
         return Stream.of(
                 Arguments.of(1000, new LottoTickets(Collections.emptyList())),
-                Arguments.of(1000, new LottoTickets(Arrays.asList(new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)))))
+                Arguments.of(1000, new LottoTickets(Collections.singletonList(new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)))))
         );
     }
 
