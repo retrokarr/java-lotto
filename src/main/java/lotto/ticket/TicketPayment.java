@@ -14,8 +14,14 @@ public class TicketPayment {
         this.manualTickets = manualTickets;
     }
 
-    public LottoTickets addLottoTickets(LottoTickets automaticTickets) {
-        return manualTickets.addTickets(automaticTickets);
+    public void addLottoTickets(LottoTickets automaticTickets) {
+        manualTickets.addTickets(automaticTickets);
+    }
+
+    public LottoTickets getLottoTickets() {
+        LottoTickets wholeTickets = new LottoTickets(manualTickets.getTickets());
+
+        return wholeTickets;
     }
 
     public int manualTicketCount() {

@@ -13,10 +13,10 @@ public class Lotto {
     private Lotto(TicketPayment ticketPayment) {
         checkInput(ticketPayment);
 
+        ticketPayment.addLottoTickets(LottoTickets.buy(ticketPayment.affordableTicketCount()));
+
         this.ticketPayment = ticketPayment;
-        this.lottoTickets = ticketPayment.addLottoTickets(
-                LottoTickets.buy(ticketPayment.affordableTicketCount())
-        );
+        this.lottoTickets = ticketPayment.getLottoTickets();
     }
 
     public static Lotto buy(TicketPayment ticketPayment) {
