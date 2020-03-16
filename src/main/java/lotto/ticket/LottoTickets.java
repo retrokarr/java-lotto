@@ -46,10 +46,9 @@ public class LottoTickets {
         return lottoTickets;
     }
 
-    public LottoTickets addTickets(LottoTickets automaticTickets) {
-        List<LottoTicket> newTickets = new ArrayList<>(this.lottoTickets);
-        newTickets.addAll(automaticTickets.lottoTickets);
+    public void addTickets(LottoTickets newTickets, LottoTickets additionalTickets) {
+        newTickets.lottoTickets = new ArrayList<>(this.lottoTickets);
 
-        return new LottoTickets(newTickets);
+        newTickets.lottoTickets.addAll(additionalTickets.lottoTickets);
     }
 }

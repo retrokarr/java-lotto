@@ -1,5 +1,7 @@
 package lotto.number;
 
+import spark.utils.StringUtils;
+
 import java.util.Objects;
 
 import static lotto.util.LottoStatics.LIMIT_OF_LOTTO_NUMBER;

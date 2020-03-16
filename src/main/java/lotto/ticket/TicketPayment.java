@@ -15,7 +15,7 @@ public class TicketPayment {
     }
 
     public void addLottoTickets(LottoTickets automaticTickets) {
-        manualTickets.addTickets(automaticTickets);
+        manualTickets.addTickets(manualTickets, automaticTickets);
     }
 
     public LottoTickets getLottoTickets() {
