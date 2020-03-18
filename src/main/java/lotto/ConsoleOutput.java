@@ -14,7 +14,7 @@ import java.util.List;
 public class ConsoleOutput {
 
     public static void showBoughtLottos(PurchaseInfo purchaseInfo) {
-        System.out.println(purchaseInfo.purchaseCount() + "개를 구매했습니다.");
+        System.out.printf("수동으로 %d, 자동으로 %d장 구매했습니다.\n", purchaseInfo.getManualTicketCount(), purchaseInfo.getAutoTicketCount());
 
         for(LottoTicket ticket : purchaseInfo.getTickets()) {
             System.out.println(ticket.getNumbers());

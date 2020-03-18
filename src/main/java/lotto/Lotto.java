@@ -3,35 +3,37 @@ package lotto;
 import lotto.dto.MatchResult;
 import lotto.dto.PurchaseInfo;
 import lotto.ticket.LottoTickets;
+import lotto.ticket.TicketPayment;
 import lotto.ticket.WinningLottoTicket;
 
-import static lotto.util.LottoStatics.PRICE_OF_LOTTO_TICKET;
-
 public class Lotto {
-    private int payment;
+    private TicketPayment ticketPayment;
     private LottoTickets lottoTickets;
 
-    private Lotto(int payment) {
-        if(payment <= 0) {
-            throw new IllegalArgumentException("Invalid input. payment should be greater than 0");
-        }
+    private Lotto(TicketPayment ticketPayment) {
+        checkInput(ticketPayment);
 
-        int affordableCount = payment / PRICE_OF_LOTTO_TICKET;
+        ticketPayment.addLottoTickets(LottoTickets.buy(ticketPayment.affordableTicketCount()));
 
-        this.payment = payment;
-        this.lottoTickets = LottoTickets.buy(affordableCount);
+        this.ticketPayment = ticketPayment;
+        this.lottoTickets = ticketPayment.getLottoTickets();
     }
 
-    public static Lotto buy(int payment) {
-        return new Lotto(payment);
+    public static Lotto buy(TicketPayment ticketPayment) {
+        return new Lotto(ticketPayment);
     }
 
     public PurchaseInfo purchaseInfo() {
-        return new PurchaseInfo(lottoTickets.getTickets());
+        return new PurchaseInfo(ticketPayment, lottoTickets.getTickets());
     }
 
     public MatchResult winningCheck(WinningLottoTicket winningLottoTicket) {
+        return new MatchResult(ticketPayment, lottoTickets.winningCheck(winningLottoTicket));
+    }
 
-        return new MatchResult(payment, lottoTickets.winningCheck(winningLottoTicket));
+    private void checkInput(TicketPayment ticketPayment) {
+        if(ticketPayment == null) {
+            throw new IllegalArgumentException("Invalid input. ticket payment must not be a null");
+        }
     }
 }

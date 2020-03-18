@@ -1,11 +1,13 @@
 package lotto.ticket;
 
+import lotto.Lottos;
+import lotto.number.LottoNumber;
 import lotto.prize.LottoPrizes;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.NullSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,16 +22,17 @@ class LottoTicketsTest {
     @Test
     void lottoTicketsTest() {
         assertThat(new LottoTickets(Arrays.asList(
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6))
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6))
         ))).isNotNull();
     }
 
     @ParameterizedTest
-    @NullAndEmptySource
+    @NullSource
     void invalidInputTest(List<LottoTicket> lottoTickets) {
         assertThatThrownBy(() -> new LottoTickets(lottoTickets)).isInstanceOf(IllegalArgumentException.class);
     }
@@ -37,16 +40,16 @@ class LottoTicketsTest {
 
     @ParameterizedTest
     @MethodSource
-    void winningCheckTest(List<Integer> numbers, int bonusNumber, int countOfNone, int countOfFifth, int countOfFourth, int countOfThird, int countOfSecond, int countOfFirst) {
+    void winningCheckTest(List<LottoNumber> numbers, int bonusNumber, int countOfNone, int countOfFifth, int countOfFourth, int countOfThird, int countOfSecond, int countOfFirst) {
         LottoTickets lottoTickets = new LottoTickets(Arrays.asList(
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 7)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 5, 8)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 4, 8, 9)),
-                new LottoTicket(Arrays.asList(1, 2, 3, 8, 9, 10))
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 7)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 5, 8)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 4, 8, 9)),
+                new LottoTicket(Lottos.asList(1, 2, 3, 8, 9, 10))
         ));
 
-        LottoPrizes lottoPrizes = lottoTickets.winningCheck(new WinningLottoTicket(numbers, bonusNumber));
+        LottoPrizes lottoPrizes = lottoTickets.winningCheck(new WinningLottoTicket(numbers, new LottoNumber(bonusNumber)));
 
         assertThat(lottoPrizes.countOfPrize(NONE)).isEqualTo(countOfNone);
         assertThat(lottoPrizes.countOfPrize(FIFTH_PRIZE)).isEqualTo(countOfFifth);
@@ -58,9 +61,9 @@ class LottoTicketsTest {
 
     private static Stream winningCheckTest() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 7, 0, 1, 1, 1, 1, 1),
-                Arguments.of(Arrays.asList(45, 44, 43, 42, 41, 40), 7, 5, 0, 0, 0, 0, 0),
-                Arguments.of(Arrays.asList(1, 2, 3, 45, 44, 43), 7, 0, 5, 0, 0, 0, 0)
+                Arguments.of(Lottos.asList(1, 2, 3, 4, 5, 6), 7, 0, 1, 1, 1, 1, 1),
+                Arguments.of(Lottos.asList(45, 44, 43, 42, 41, 40), 7, 5, 0, 0, 0, 0, 0),
+                Arguments.of(Lottos.asList(1, 2, 3, 45, 44, 43), 7, 0, 5, 0, 0, 0, 0)
         );
     }
 }

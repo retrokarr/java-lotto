@@ -1,5 +1,6 @@
 package lotto.ticket;
 
+import lotto.number.LottoNumber;
 import lotto.prize.LottoPrize;
 
 import java.util.*;
@@ -7,9 +8,9 @@ import java.util.*;
 import static lotto.util.LottoStatics.NUMBER_OF_LOTTO_NUMBER;
 
 public class LottoTicket {
-    List<Integer> numbers;
+    private List<LottoNumber> numbers;
 
-    public LottoTicket(List<Integer> numbers) {
+    public LottoTicket(List<LottoNumber> numbers) {
         inputCheck(numbers);
 
         Collections.sort(numbers);
@@ -25,11 +26,11 @@ public class LottoTicket {
         return LottoPrize.ofMatchCount(matchCount, numbers.contains(winningLottoTicket.getBonusNumber()));
     }
 
-    public List<Integer> getNumbers() {
+    public List<LottoNumber> getNumbers() {
         return new ArrayList<>(numbers);
     }
 
-    private void inputCheck(List<Integer> numbers) {
+    private void inputCheck(List<LottoNumber> numbers) {
         if(numbers == null) {
             throw new IllegalArgumentException("Invalid input : numbers is null");
         }

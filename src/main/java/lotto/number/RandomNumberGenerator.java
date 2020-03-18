@@ -9,17 +9,17 @@ import java.util.stream.IntStream;
 import static lotto.util.LottoStatics.*;
 
 public class RandomNumberGenerator implements NumberGenerator {
-    private static final List<Integer> NUMBER_POOL;
+    private static final List<LottoNumber> NUMBER_POOL;
 
     static {
         NUMBER_POOL = IntStream.rangeClosed(START_OF_LOTTO_NUMBER, LIMIT_OF_LOTTO_NUMBER)
-                .boxed()
+                .mapToObj(LottoNumber::new)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<Integer> generate() {
-        List<Integer> newNumbers = new ArrayList<>(NUMBER_POOL);
+    public List<LottoNumber> generate() {
+        List<LottoNumber> newNumbers = new ArrayList<>(NUMBER_POOL);
 
         Collections.shuffle(newNumbers);
 

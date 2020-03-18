@@ -4,15 +4,16 @@ import lotto.number.NumberGenerator;
 import lotto.number.RandomNumberGenerator;
 import lotto.prize.LottoPrizes;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
-    List<LottoTicket> lottoTickets;
+    private List<LottoTicket> lottoTickets;
 
     public LottoTickets(List<LottoTicket> lottoTickets) {
-        if(lottoTickets == null || lottoTickets.isEmpty()) {
+        if(lottoTickets == null) {
             throw new IllegalArgumentException("Tickets art not exist");
         }
 
@@ -23,16 +24,12 @@ public class LottoTickets {
         return buy(affordableCount, new RandomNumberGenerator());
     }
 
-    public static LottoTickets buy(int affordableCount, NumberGenerator numberGenerator) {
+    private static LottoTickets buy(int affordableCount, NumberGenerator numberGenerator) {
         List<LottoTicket> lottoTickets = IntStream.range(0, affordableCount)
                 .mapToObj(x -> new LottoTicket(numberGenerator.generate()))
                 .collect(Collectors.toList());
 
         return new LottoTickets(lottoTickets);
-    }
-
-    public int ticketCount() {
-        return lottoTickets.size();
     }
 
     public LottoPrizes winningCheck(WinningLottoTicket winningLottoTicket) {
@@ -47,5 +44,11 @@ public class LottoTickets {
 
     public List<LottoTicket> getTickets() {
         return lottoTickets;
+    }
+
+    public void addTickets(LottoTickets newTickets, LottoTickets additionalTickets) {
+        newTickets.lottoTickets = new ArrayList<>(this.lottoTickets);
+
+        newTickets.lottoTickets.addAll(additionalTickets.lottoTickets);
     }
 }

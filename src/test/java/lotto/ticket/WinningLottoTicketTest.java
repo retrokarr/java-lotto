@@ -1,5 +1,7 @@
 package lotto.ticket;
 
+import lotto.Lottos;
+import lotto.number.LottoNumber;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,22 +17,22 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class WinningLottoTicketTest {
     @Test
     void winningLottoTicketTest() {
-        assertThat(new WinningLottoTicket(Arrays.asList(1, 2, 3, 4, 5, 6), 7)).isNotNull();
+        assertThat(new WinningLottoTicket(Lottos.asList(1, 2, 3, 4, 5, 6), new LottoNumber(7))).isNotNull();
     }
 
     @MethodSource
     @ParameterizedTest
-    void illegalInputTest(List<Integer> numbers, int bonusNumber) {
+    void illegalInputTest(List<LottoNumber> numbers, LottoNumber bonusNumber) {
         assertThatThrownBy(() -> new WinningLottoTicket(numbers, bonusNumber)).isInstanceOf(IllegalArgumentException.class);
     }
 
     private static Stream illegalInputTest() {
         return Stream.of(
-                Arguments.of(null, 1),
-                Arguments.of(Arrays.asList(), 1),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5), 7),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 6),
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6, 7), 8)
+                Arguments.of(null, new LottoNumber(1)),
+                Arguments.of(Arrays.asList(), new LottoNumber(1)),
+                Arguments.of(Lottos.asList(1, 2, 3, 4, 5), new LottoNumber(7)),
+                Arguments.of(Lottos.asList(1, 2, 3, 4, 5, 6), new LottoNumber(6)),
+                Arguments.of(Lottos.asList(1, 2, 3, 4, 5, 6, 7), new LottoNumber(8))
         );
     }
 }

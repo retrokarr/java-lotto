@@ -5,7 +5,7 @@ import lotto.dto.MatchResult;
 public class ConsoleLotto {
 
     public static void main(String[] args) {
-        Lotto lotto = Lotto.buy(ConsoleInput.receiveMoney());
+        Lotto lotto = Lotto.buy(ConsoleInput.receiveInputs());
 
         ConsoleOutput.showBoughtLottos(lotto.purchaseInfo());
 
