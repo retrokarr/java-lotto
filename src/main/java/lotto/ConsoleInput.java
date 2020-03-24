@@ -67,7 +67,7 @@ public class ConsoleInput {
         return new WinningLottoTicket(convertToNumber(winningNumberString), new LottoNumber(bonusNumber));
     }
 
-    private static List<LottoNumber> convertToNumber(String winningNumberString) {
+    public static List<LottoNumber> convertToNumber(String winningNumberString) {
         return Arrays.stream(winningNumberString.split(SPLIT))
                 .map(String::trim)
                 .map(Integer::parseInt)

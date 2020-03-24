@@ -41,4 +41,40 @@ public class ConsoleOutput {
 
         System.out.printf("총 수익률은 %d%%입니다.\n", revenue / matchResult.getPayment());
     }
+
+    public static List<String> getLottoPrizesResultString(MatchResult matchResult) {
+        LottoPrizes prizes = matchResult.getPrizes();
+        List<LottoPrize> lottoPrizes = new ArrayList<>(Arrays.asList(LottoPrize.values()));//https://kkwonsy.tistory.com/14
+        Collections.reverse(lottoPrizes);
+        lottoPrizes.remove(0);
+        List<String> resultString = new ArrayList<>();
+
+        for(LottoPrize lottoPrize : lottoPrizes) {
+            resultString.add(
+                    String.format(
+                        "%d개 %s일치(%d원)- %d개\n",
+                        lottoPrize.getMatchCount(),
+                        lottoPrize.isBonusMatching() ? ", 보너스 볼 " : "",
+                        lottoPrize.getPrizeMoney(),
+                        prizes.countOfPrize(lottoPrize)
+                ));
+        }
+
+        return resultString;
+    }
+
+    public static int getRevenue(MatchResult matchResult) {
+        LottoPrizes prizes = matchResult.getPrizes();
+        List<LottoPrize> lottoPrizes = new ArrayList<>(Arrays.asList(LottoPrize.values()));//https://kkwonsy.tistory.com/14
+        Collections.reverse(lottoPrizes);
+        lottoPrizes.remove(0);
+
+        int revenue = 0;
+        for(LottoPrize lottoPrize : lottoPrizes) {
+            revenue += lottoPrize.getPrizeMoney() * prizes.countOfPrize(lottoPrize);
+        }
+
+        System.out.printf("총 수익률은 %d%%입니다.\n", revenue / matchResult.getPayment());
+        return revenue / matchResult.getPayment();
+    }
 }
